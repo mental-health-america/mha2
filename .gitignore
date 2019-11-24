@@ -50,10 +50,17 @@
 # Ignore .env files as they are personal
 /.env
 
-# Ignore paths that contain user-generated content.
+# Ignore paths that contain user-generated content <set by MHA>.
 #sites/*/files
-sites/*/private
+#sites/*/private
 #files/*
+
+# Ignore paths that may contain user-generated content <updated Brad>
+/web/sites/*/files
+/web/sites/*/public
+/web/sites/*/private
+/web/sites/*/files-public
+/web/sites/*/files-private
 
 # Place local settings in settings.local.php
 sites/*/settings.local.php
