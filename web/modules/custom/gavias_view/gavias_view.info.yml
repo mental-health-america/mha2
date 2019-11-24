@@ -1,7 +1,0 @@
-name: Gavias Custom View
-type: module
-description: Gavias Custom View
-core: 8.x
-package: gavias
-dependencies:
-  - image
