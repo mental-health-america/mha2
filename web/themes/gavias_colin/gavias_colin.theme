@@ -33,6 +33,11 @@ function gavias_colin_preprocess_page(&$variables) {
   $variables['footer_third_size'] = theme_get_setting('footer_third_size');
   $variables['footer_four_size'] = theme_get_setting('footer_four_size');
 
+  // Define {{ js_map_id }}  in the template.
+  if (!empty($variables['node']) && !empty($variables['node']->field_js_map_id)) {
+    $variables['js_map_id'] = $variables['node']->field_js_map_id->value;
+  }
+
   //Header setting -----------
   $header = 'header';
   if(theme_get_setting('default_header')){
