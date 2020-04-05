@@ -84,7 +84,9 @@
       var self = this;
       // Wait until the window load event to try to use the maps library.
       $(document).ready(function (e) {
-        _.invoke(self.googleCallbacks, 'callback');
+        _.each(self.googleCallbacks, function(callback) {
+          callback.callback();
+        });
         self.googleCallbacks = [];
       });
     },
@@ -411,17 +413,17 @@
           // If the map.infowindow is defined, add an event listener for the
           // Ajax Infowindow Popup.
           google.maps.event.addListener(map.infowindow, 'domready', function () {
-            var infowindow_content = document.createElement('div');
-            infowindow_content.innerHTML = map.infowindow.getContent().trim();
-            var content = $('[data-geofield-google-map-ajax-popup]', infowindow_content);
+            var element = document.createElement('div');
+            element.innerHTML = map.infowindow.getContent().trim();
+            var content = $('[data-geofield-google-map-ajax-popup]', element);
             if (content.length) {
               var url = content.data('geofield-google-map-ajax-popup');
-              $.get(url, function (response) {
-                if (response) {
-                  map.infowindow.setContent(response);
-                }
-              });
+              Drupal.ajax({url: url}).execute();
             }
+            // Attach drupal behaviors on new content.
+            $(element).each(function () {
+              Drupal.attachBehaviors(this, drupalSettings);
+            })
           });
 
           if (features.setMap) {
