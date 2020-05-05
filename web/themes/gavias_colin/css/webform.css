@@ -201,7 +201,7 @@ div#webform-wrapper .webform-submission-form .form-item label {
 .webform-submission-form .form-item label {
   font-size: 16px !important;
   font-weight: 600 !important;
-  color: #ffffff !important;
+  color: #fff !important;
   text-transform: inherit !important;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.30);
   width: 100%;
@@ -239,7 +239,7 @@ div#webform-wrapper .webform-submission-form .form-item label {
 
 .webform-submission-form .form-actions .webform-button--preview {
   text-transform: uppercase;
-  background: #5468FF;
+  background: #5468ff;
   color: #fff;
   letter-spacing: 1px;
   border: none;
@@ -277,9 +277,9 @@ div#webform-wrapper .webform-submission-form .form-item label {
 }
 
 .webform-submission-form legend {
-  color: #fff!important;
-  border: 0!important;;
-  border-bottom: 1px solid #fff!important;;
+  color: #fff !important;
+  border: 0 !important;;
+  border-bottom: 1px solid #fff !important;;
 }
 
 .field.field--name-webform.field--type-webform.field--label-hidden.field__item {
@@ -362,7 +362,7 @@ div#webform-wrapper .webform-submission-form .form-item label {
   -ms-border-radius: 30px;
   -o-border-radius: 30px;
   text-transform: uppercase;
-  background: #5468FF;
+  background: #5468ff;
   color: #fff;
   letter-spacing: 1px;
   border: none;
@@ -498,4 +498,70 @@ div#webform-wrapper .webform-submission-form .form-item label {
     margin-top: 0;
     margin-bottom: 20px;
   }
+}
+
+
+/* WEBFORM */
+
+.clean-web-form h4, .clean-web-form h5, .clean-web-form h6 {
+  line-height: 1;
+  color: rgba(0, 0, 0, 01) !important;
+}
+
+.clean-web-form .node__content h2 {
+  font-size: inherit !important;
+  color: #000 !important;
+}
+
+.clean-web-form legend {
+  margin: 30px 0 0 0;
+}
+
+.clean-web-form .webform-submission-form p,
+.clean-web-form .webform-submission-form ul li {
+  color: #000 !important;
+}
+
+.clean-web-form .webform-submission-form .progress-title {
+  color: #000;
+  text-shadow: none;
+}
+
+.clean-web-form .webform-submission-form .description {
+  color: #000;
+  text-shadow: none;
+}
+
+.clean-web-form .webform-submission-form .form-item {
+  margin-bottom: 10px;
+}
+
+.clean-web-form .field.field--name-webform.field--type-webform.field--label-hidden.field__item {
+  background: #fff !important;
+  color: #000 !important;
+  margin: 50px !important;
+  padding: 50px !important;
+  max-width: 100%;
+  border-radius: 15px;
+}
+
+.clean-web-form .field.field--name-webform.field--type-webform.field--label-hidden.field__item {
+  border: 1px solid #fff;
+}
+
+.clean-web-form .webform-submission-form .form-item label {
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: #000 !important;
+  text-shadow: none;
+}
+
+.clean-web-form h3, .clean-web-form .h3 {
+  font-size: 18px !important;
+}
+.clean-web-form .field--name-webform legend {
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  color: #000 !important;
+  text-shadow: none;
 }
