@@ -1227,16 +1227,6 @@ body.footer-white #footer .footer-center {
   background: #000;
 }
 
-.field.field--name-webform.field--type-webform.field--label-hidden.field__item {
-  margin: 0 auto;
-  max-width: 100%;
-  padding: 25px;
-  background: #385787;
-  border-radius: 15px;
-  border: 1px solid #385787;
-}
-
-
 .field--name-field-speaker-profile a {
   color: #262626;
   font-size: 12px;
@@ -4694,11 +4684,6 @@ ul.sf-menu.sf-navbar ul ul {
 }
 
 @media (max-width: 998px) {
-  .field.field--name-webform.field--type-webform.field--label-hidden.field__item {
-    margin: 0 !important;
-    padding: 20px !important;
-  }
-
   .sidebar .block-menu ul li a {
     margin: 0 0 0 20px;
     width: 100%;
@@ -5539,20 +5524,6 @@ ul.sf-menu.sf-navbar ul ul {
 }
 
 /* WEBFORM */
-.webform-submission-form .form-item label {
-  color: #fff !important;
-}
-
-.webform-submission-form .form-item input {
-  background: #fff !important;
-  color: #000 !important;
-}
-
-.webform-submission-form legend {
-  color: #fff!important;
-  border: 0!important;;
-  border-bottom: 1px solid #fff!important;;
-}
 
 .clean-web-form h4, .clean-web-form h5, .clean-web-form h6 {
   line-height: 1;
