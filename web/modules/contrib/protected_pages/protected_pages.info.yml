@@ -1,0 +1,11 @@
+name: 'Protected Pages'
+type: module
+description: 'Allow you to protect pages, private files by secure password.'
+configure: protected_pages_settings
+package: 'Access'
+core_version_requirement: ^8.8 || ^9
+
+# Information added by Drupal.org packaging script on 2020-04-27
+version: '8.x-1.2'
+project: 'protected_pages'
+datestamp: 1587950427
