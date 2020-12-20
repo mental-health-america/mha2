@@ -122,6 +122,7 @@
         "drupal/salesforce": "^3.2",
         "drupal/scheduler": "^1.0",
         "drupal/search_api": "^1.13",
+        "drupal/search_api_solr": "^4.1",
         "drupal/search_api_sorts": "^1.0",
         "drupal/seckit": "^1.1",
         "drupal/seo_checklist": "^4.1",
