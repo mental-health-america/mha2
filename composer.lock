@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7a059d6170728fa80583021ecf1c6471",
+    "content-hash": "7fd4dd0159c6642579c60e93664ac9b5",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -8295,62 +8295,6 @@
                 "source": "http://git.drupal.org/project/search_api_location.git",
                 "issues": "https://www.drupal.org/project/issues/search_api_location",
                 "irc": "irc://irc.freenode.org/drupal-search-api"
-            }
-        },
-        {
-            "name": "drupal/search_api_page",
-            "version": "1.0.0-beta3",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/search_api_page.git",
-                "reference": "8.x-1.0-beta3"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/search_api_page-8.x-1.0-beta3.zip",
-                "reference": "8.x-1.0-beta3",
-                "shasum": "9f6f68e9538469b39766c9dfdd034679a51503e4"
-            },
-            "require": {
-                "drupal/core": "^8.8 || ^9",
-                "drupal/search_api": "*"
-            },
-            "require-dev": {
-                "drupal/facets": "*"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "drupal": {
-                    "version": "8.x-1.0-beta3",
-                    "datestamp": "1598944371",
-                    "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Beta releases are not covered by Drupal security advisories."
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "borisson_",
-                    "homepage": "https://www.drupal.org/user/2393360"
-                },
-                {
-                    "name": "drunken monkey",
-                    "homepage": "https://www.drupal.org/user/205582"
-                },
-                {
-                    "name": "swentel",
-                    "homepage": "https://www.drupal.org/user/107403"
-                }
-            ],
-            "description": "Create search pages using Search API indexes.",
-            "homepage": "https://www.drupal.org/project/search_api_page",
-            "support": {
-                "source": "https://git.drupalcode.org/project/search_api_page"
             }
         },
         {
@@ -17724,7 +17668,6 @@
         "drupal/mimemail": 15,
         "drupal/rules": 15,
         "drupal/search_api_location": 15,
-        "drupal/search_api_page": 10,
         "drupal/search_api_spellcheck": 10,
         "drupal/simplenews": 10,
         "drupal/typed_data": 15,
