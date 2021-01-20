@@ -62,7 +62,7 @@ AddEncoding gzip svgz
 <IfModule mod_rewrite.c>
   RewriteEngine on
 
-  RewriteCond %{HTTP_HOST} ^(www\.)?mhanational\.org$ [NC]
+  RewriteCond %{HTTP_HOST} ^(www\.)?staging.mhanational\.org$ [NC]
   RewriteCond %{HTTPS} !=on
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,NE,R=301]
 
@@ -76,19 +76,6 @@ AddEncoding gzip svgz
   # Make sure Authorization HTTP header is available to PHP
   # even when running as CGI or FastCGI.
   RewriteRule ^ - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
-
-  ############################
-  # Redirect for syncing files
-  # dir in local devs
-  ############################
-  RewriteCond %{HTTP_HOST} ^(.*)local(.*)|^(.*)dev(.*) [NC]
-  RewriteCond %{REQUEST_URI} \.(png|jpg|jpeg|gif|mp4|webm)$
-  # File doesn't exist.
-  RewriteCond %{REQUEST_FILENAME} !-f
-  # Redirect request to your staging or production server.
-  RewriteRule ^(.*.(png|jpg|jpeg|gif|css|js|mp4|webm))$ https://www.mhanational.org/$1 [L,R=301]
-  ############################
-
 
   # Block access to "hidden" directories whose names begin with a period. This
   # includes directories used by version control systems such as Subversion or
