@@ -39,6 +39,8 @@ web/themes/README.txt
 web/LICENSE.txt
 web/README.txt
 
+solr
+solr-8.7.0
 # Ignore Drupal's file directory
 #/web/sites/*/files/
 
