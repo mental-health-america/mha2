@@ -1,0 +1,56 @@
+2021-01-10 20:28:36.456 INFO  (main) [   ] o.e.j.u.log Logging initialized @992ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-01-10 20:28:36.509 WARN  (main) [   ] o.e.j.x.XmlConfiguration Ignored arg: <Arg name="threadpool">
+    <New id="threadpool" class="com.codahale.metrics.jetty9.InstrumentedQueuedThreadPool"><Arg name="registry">
+        <Call id="solrJettyMetricRegistry" name="getOrCreate" class="com.codahale.metrics.SharedMetricRegistries"><Arg>solr.jetty</Arg></Call>
+      </Arg></New>
+  </Arg>
+2021-01-10 20:28:36.600 INFO  (main) [   ] o.e.j.s.Server jetty-9.4.27.v20200227; built: 2020-02-27T18:37:21.340Z; git: a304fd9f351f337e7c0e2a7c28878dd536149c6c; jvm 15.0.1+9
+2021-01-10 20:28:36.617 INFO  (main) [   ] o.e.j.d.p.ScanningAppProvider Deployment monitor [file:///Users/bradleywaye/Sites/local.staging.mhanational.org/solr-8.7.0/server/contexts/] at interval 0
+2021-01-10 20:28:36.907 INFO  (main) [   ] o.e.j.w.StandardDescriptorProcessor NO JSP Support for /solr, did not find org.apache.jasper.servlet.JspServlet
+2021-01-10 20:28:36.914 INFO  (main) [   ] o.e.j.s.session DefaultSessionIdManager workerName=node0
+2021-01-10 20:28:36.914 INFO  (main) [   ] o.e.j.s.session No SessionScavenger set, using defaults
+2021-01-10 20:28:36.917 INFO  (main) [   ] o.e.j.s.session node0 Scavenging every 600000ms
+2021-01-10 20:28:36.961 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter Using logger factory org.apache.logging.slf4j.Log4jLoggerFactory
+2021-01-10 20:28:36.964 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter  ___      _       Welcome to Apache Solr™ version 8.7.0
+2021-01-10 20:28:36.964 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter / __| ___| |_ _   Starting in standalone mode on port 8983
+2021-01-10 20:28:36.965 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter \__ \/ _ \ | '_|  Install dir: /Users/bradleywaye/Sites/local.staging.mhanational.org/solr
+2021-01-10 20:28:36.965 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter |___/\___/_|_|    Start time: 2021-01-10T20:28:36.965134Z
+2021-01-10 20:28:36.978 INFO  (main) [   ] o.a.s.c.SolrPaths Using system property solr.solr.home: /Users/bradleywaye/Sites/local.staging.mhanational.org/solr/server/solr
+2021-01-10 20:28:36.982 INFO  (main) [   ] o.a.s.c.SolrXmlConfig Loading container configuration from /Users/bradleywaye/Sites/local.staging.mhanational.org/solr/server/solr/solr.xml
+2021-01-10 20:28:37.076 INFO  (main) [   ] o.a.s.c.SolrXmlConfig MBean server found: com.sun.jmx.mbeanserver.JmxMBeanServer@8f2ef19, but no JMX reporters were configured - adding default JMX reporter.
+2021-01-10 20:28:37.416 INFO  (main) [   ] o.a.s.h.c.HttpShardHandlerFactory Host whitelist initialized: WhitelistHostChecker [whitelistHosts=null, whitelistHostCheckingEnabled=true]
+2021-01-10 20:28:37.596 WARN  (main) [   ] o.e.j.u.s.S.config Trusting all certificates configured for Client@7e94d093[provider=null,keyStore=null,trustStore=null]
+2021-01-10 20:28:37.596 WARN  (main) [   ] o.e.j.u.s.S.config No Client EndPointIdentificationAlgorithm configured for Client@7e94d093[provider=null,keyStore=null,trustStore=null]
+2021-01-10 20:28:37.716 WARN  (main) [   ] o.e.j.u.s.S.config Trusting all certificates configured for Client@7942a854[provider=null,keyStore=null,trustStore=null]
+2021-01-10 20:28:37.716 WARN  (main) [   ] o.e.j.u.s.S.config No Client EndPointIdentificationAlgorithm configured for Client@7942a854[provider=null,keyStore=null,trustStore=null]
+2021-01-10 20:28:37.764 WARN  (main) [   ] o.a.s.c.CoreContainer Not all security plugins configured!  authentication=disabled authorization=disabled.  Solr is only as secure as you make it. Consider configuring authentication/authorization before exposing Solr to users internal or external.  See https://s.apache.org/solrsecurity for more info
+2021-01-10 20:28:37.871 INFO  (main) [   ] o.a.s.c.TransientSolrCoreCacheDefault Allocating transient cache for 2147483647 transient cores
+2021-01-10 20:28:37.873 INFO  (main) [   ] o.a.s.h.a.MetricsHistoryHandler No .system collection, keeping metrics history in memory.
+2021-01-10 20:28:37.927 INFO  (main) [   ] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.node' (registry 'solr.node') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@8f2ef19
+2021-01-10 20:28:37.928 INFO  (main) [   ] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.jvm' (registry 'solr.jvm') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@8f2ef19
+2021-01-10 20:28:37.930 INFO  (main) [   ] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.jetty' (registry 'solr.jetty') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@8f2ef19
+2021-01-10 20:28:37.961 INFO  (main) [   ] o.a.s.c.CorePropertiesLocator Found 0 core definitions underneath /Users/bradleywaye/Sites/local.staging.mhanational.org/solr/server/solr
+2021-01-10 20:28:38.014 INFO  (main) [   ] o.e.j.s.h.ContextHandler Started o.e.j.w.WebAppContext@5b07730f{/solr,file:///Users/bradleywaye/Sites/local.staging.mhanational.org/solr-8.7.0/server/solr-webapp/webapp/,AVAILABLE}{/Users/bradleywaye/Sites/local.staging.mhanational.org/solr-8.7.0/server/solr-webapp/webapp}
+2021-01-10 20:28:38.022 INFO  (main) [   ] o.e.j.s.AbstractConnector Started ServerConnector@63f8276e{HTTP/1.1, (http/1.1, h2c)}{0.0.0.0:8983}
+2021-01-10 20:28:38.022 INFO  (main) [   ] o.e.j.s.Server Started @2560ms
+2021-01-10 20:28:54.166 INFO  (qtp127702987-52) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1610310534069} status=0 QTime=22
+2021-01-10 20:28:54.172 INFO  (qtp127702987-50) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1610310534069} status=0 QTime=28
+2021-01-10 20:28:54.182 INFO  (qtp127702987-30) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1610310534069} status=0 QTime=2
+2021-01-10 20:29:02.086 INFO  (qtp127702987-30) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1610310534069} status=0 QTime=0
+2021-01-10 20:29:02.088 INFO  (qtp127702987-29) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/logging params={wt=json&_=1610310542081&since=0} status=0 QTime=1
+2021-01-10 20:29:02.089 INFO  (qtp127702987-51) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1610310534069} status=0 QTime=3
+2021-01-10 20:29:05.884 INFO  (qtp127702987-47) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1610310534069} status=0 QTime=0
+2021-01-10 20:29:05.888 INFO  (qtp127702987-29) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1610310534069} status=0 QTime=4
+2021-01-10 20:29:05.889 INFO  (qtp127702987-52) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/logging params={wt=json&_=1610310542081} status=0 QTime=4
+2021-01-10 20:29:08.705 INFO  (qtp127702987-51) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1610310534069} status=0 QTime=0
+2021-01-10 20:29:08.705 INFO  (qtp127702987-30) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={wt=json&_=1610310534069} status=0 QTime=0
+2021-01-10 20:29:08.707 INFO  (qtp127702987-50) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1610310534069} status=0 QTime=1
+2021-01-10 20:29:10.967 INFO  (qtp127702987-29) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1610310534069} status=0 QTime=0
+2021-01-10 20:29:10.968 INFO  (qtp127702987-47) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/properties params={wt=json&_=1610310550962} status=0 QTime=0
+2021-01-10 20:29:10.970 INFO  (qtp127702987-30) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1610310534069} status=0 QTime=2
+2021-01-10 20:29:17.091 INFO  (qtp127702987-30) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1610310534069} status=0 QTime=0
+2021-01-10 20:29:17.103 INFO  (qtp127702987-52) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1610310534069} status=0 QTime=11
+2021-01-10 20:29:17.112 INFO  (qtp127702987-51) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/threads params={wt=json&_=1610310557086} status=0 QTime=21
+2021-01-10 20:29:19.121 INFO  (qtp127702987-29) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1610310534069} status=0 QTime=0
+2021-01-10 20:29:19.127 INFO  (qtp127702987-50) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1610310534069} status=0 QTime=4
+2021-01-10 20:29:19.130 INFO  (qtp127702987-27) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1610310534069} status=0 QTime=1
