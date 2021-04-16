@@ -4,12 +4,12 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInite79b1fafaf46fb4283af5ca52e28e08b
+class ComposerStaticInit28ed0b610adae093ae18ea83a8c0020c
 {
     public static $files = array (
-        '9b38cf48e83f5d8f60375221cd213eee' => __DIR__ . '/..' . '/phpstan/phpstan/bootstrap.php',
-        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
+        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
+        '9b38cf48e83f5d8f60375221cd213eee' => __DIR__ . '/..' . '/phpstan/phpstan/bootstrap.php',
         '92c8763cd6170fce6fcfe7e26b4e8c10' => __DIR__ . '/..' . '/symfony/phpunit-bridge/bootstrap.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
@@ -42,6 +42,7 @@ class ComposerStaticInite79b1fafaf46fb4283af5ca52e28e08b
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
         '952683d815ff0a7bf322b93c0be7e4e4' => __DIR__ . '/..' . '/chi-teck/drupal-code-generator/src/bootstrap.php',
         '5a12a5271c58108e0aa33355e6ac54ea' => __DIR__ . '/..' . '/drupal/console-core/src/functions.php',
+        '2d0bd6b7e257b7230c706e6559d6a87b' => __DIR__ . '/..' . '/mglaman/phpstan-drupal/drupal-phpunit-hack.php',
         'd511210698f02d87ca48e3972f64323e' => __DIR__ . '/../..' . '/load.environment.php',
     );
 
@@ -64,10 +65,6 @@ class ComposerStaticInite79b1fafaf46fb4283af5ca52e28e08b
             'Zumba\\Mink\\Driver\\' => 18,
             'Zumba\\GastonJS\\' => 15,
             'ZipStream\\' => 10,
-        ),
-        'X' => 
-        array (
-            'XdgBaseDir\\' => 11,
         ),
         'W' => 
         array (
@@ -160,7 +157,6 @@ class ComposerStaticInite79b1fafaf46fb4283af5ca52e28e08b
         'J' => 
         array (
             'JsonSchema\\' => 11,
-            'Jawira\\CaseConverter\\' => 21,
         ),
         'I' => 
         array (
@@ -190,7 +186,6 @@ class ComposerStaticInite79b1fafaf46fb4283af5ca52e28e08b
             'Drupal\\Console\\' => 15,
             'Drupal\\Component\\' => 17,
             'Drupal\\' => 7,
-            'DrupalRector\\' => 13,
             'DrupalPractice\\' => 15,
             'DrupalComposer\\DrupalScaffold\\' => 30,
             'DrupalCodeGenerator\\' => 20,
@@ -265,10 +260,6 @@ class ComposerStaticInite79b1fafaf46fb4283af5ca52e28e08b
         'ZipStream\\' => 
         array (
             0 => __DIR__ . '/..' . '/maennchen/zipstream-php/src',
-        ),
-        'XdgBaseDir\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/dnoegel/php-xdg-base-dir/src',
         ),
         'Webmozart\\PathUtil\\' => 
         array (
@@ -532,10 +523,6 @@ class ComposerStaticInite79b1fafaf46fb4283af5ca52e28e08b
         array (
             0 => __DIR__ . '/..' . '/justinrainbow/json-schema/src/JsonSchema',
         ),
-        'Jawira\\CaseConverter\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/jawira/case-converter/src',
-        ),
         'Interop\\Container\\' => 
         array (
             0 => __DIR__ . '/..' . '/container-interop/container-interop/src/Interop/Container',
@@ -603,10 +590,6 @@ class ComposerStaticInite79b1fafaf46fb4283af5ca52e28e08b
         'Drupal\\' => 
         array (
             0 => __DIR__ . '/..' . '/drupal/coder/coder_sniffer/Drupal',
-        ),
-        'DrupalRector\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/palantirnet/drupal-rector/src',
         ),
         'DrupalPractice\\' => 
         array (
@@ -1052,7 +1035,7 @@ class ComposerStaticInite79b1fafaf46fb4283af5ca52e28e08b
         'PHPUnit\\Util\\Configuration' => __DIR__ . '/..' . '/phpunit/phpunit/src/Util/Configuration.php',
         'PHPUnit\\Util\\ConfigurationGenerator' => __DIR__ . '/..' . '/phpunit/phpunit/src/Util/ConfigurationGenerator.php',
         'PHPUnit\\Util\\ErrorHandler' => __DIR__ . '/..' . '/phpunit/phpunit/src/Util/ErrorHandler.php',
-        'PHPUnit\\Util\\FileLoader' => __DIR__ . '/..' . '/phpunit/phpunit/src/Util/Fileloader.php',
+        'PHPUnit\\Util\\FileLoader' => __DIR__ . '/..' . '/phpunit/phpunit/src/Util/FileLoader.php',
         'PHPUnit\\Util\\Filesystem' => __DIR__ . '/..' . '/phpunit/phpunit/src/Util/Filesystem.php',
         'PHPUnit\\Util\\Filter' => __DIR__ . '/..' . '/phpunit/phpunit/src/Util/Filter.php',
         'PHPUnit\\Util\\Getopt' => __DIR__ . '/..' . '/phpunit/phpunit/src/Util/Getopt.php',
@@ -1439,11 +1422,11 @@ class ComposerStaticInite79b1fafaf46fb4283af5ca52e28e08b
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInite79b1fafaf46fb4283af5ca52e28e08b::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInite79b1fafaf46fb4283af5ca52e28e08b::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInite79b1fafaf46fb4283af5ca52e28e08b::$prefixesPsr0;
-            $loader->fallbackDirsPsr0 = ComposerStaticInite79b1fafaf46fb4283af5ca52e28e08b::$fallbackDirsPsr0;
-            $loader->classMap = ComposerStaticInite79b1fafaf46fb4283af5ca52e28e08b::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit28ed0b610adae093ae18ea83a8c0020c::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit28ed0b610adae093ae18ea83a8c0020c::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit28ed0b610adae093ae18ea83a8c0020c::$prefixesPsr0;
+            $loader->fallbackDirsPsr0 = ComposerStaticInit28ed0b610adae093ae18ea83a8c0020c::$fallbackDirsPsr0;
+            $loader->classMap = ComposerStaticInit28ed0b610adae093ae18ea83a8c0020c::$classMap;
 
         }, null, ClassLoader::class);
     }

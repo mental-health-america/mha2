@@ -53,13 +53,6 @@ class PullController extends ControllerBase {
   protected $mappingStorage;
 
   /**
-   * State.
-   *
-   * @var \Drupal\Core\State\StateInterface
-   */
-  protected $state;
-
-  /**
    * Queue factory service.
    *
    * @var \Drupal\Core\Queue\QueueFactory
@@ -100,19 +93,18 @@ class PullController extends ControllerBase {
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  public function __construct(QueueHandler $queueHandler, DeleteHandler $deleteHandler, EntityTypeManagerInterface $etm, ConfigFactoryInterface $config, StateInterface $state, QueueFactory $queueService, QueueWorkerManagerInterface $queueWorkerManager, EventDispatcherInterface $eventDispatcher, Time $time, RequestStack $requestStack) {
+  public function __construct(QueueHandler $queueHandler, DeleteHandler $deleteHandler, EntityTypeManagerInterface $etm, ConfigFactoryInterface $configFactory, StateInterface $stateService, QueueFactory $queueService, QueueWorkerManagerInterface $queueWorkerManager, EventDispatcherInterface $eventDispatcher, Time $time, RequestStack $requestStack) {
     $this->queueHandler = $queueHandler;
     $this->deleteHandler = $deleteHandler;
     $this->mappingStorage = $etm->getStorage('salesforce_mapping');
-    $this->config = $config;
-    $this->state  = $state;
+    $this->configFactory = $configFactory;
+    $this->stateService = $stateService;
     $this->queueService = $queueService;
     $this->queueWorkerManager = $queueWorkerManager;
     $this->eventDispatcher = $eventDispatcher;
     $this->time = $time;
     $this->request = $requestStack->getCurrentRequest();
   }
-
 
   /**
    * {@inheritdoc}
@@ -138,7 +130,7 @@ class PullController extends ControllerBase {
   public function endpoint(SalesforceMappingInterface $salesforce_mapping = NULL, $key = NULL, $id = NULL) {
     // If standalone for this mapping is disabled, and global standalone is
     // disabled, then "Access Denied" for this mapping.
-    if ($key != $this->state->get('system.cron_key')) {
+    if ($key != $this->stateService->get('system.cron_key')) {
       throw new AccessDeniedHttpException();
     }
     $global_standalone = $this->config('salesforce.settings')->get('standalone');
@@ -164,6 +156,9 @@ class PullController extends ControllerBase {
     return new Response('', 204);
   }
 
+  /**
+   * Helper method to populate queue, optionally by mapping or a single record.
+   */
   protected function populateQueue(SalesforceMappingInterface $mapping = NULL, SFID $id = NULL) {
     $mappings = [];
     if ($id) {
@@ -182,12 +177,18 @@ class PullController extends ControllerBase {
     }
   }
 
+  /**
+   * Helper method to get queue processing time limit.
+   */
   protected function getTimeLimit() {
     return self::DEFAULT_TIME_LIMIT;
   }
 
+  /**
+   * Helper method to process queue.
+   */
   protected function processQueue() {
-    $start = microtime(true);
+    $start = microtime(TRUE);
     $worker = $this->queueWorkerManager->createInstance(QueueHandler::PULL_QUEUE_NAME);
     $end = time() + $this->getTimeLimit();
     $queue = $this->queueService->get(QueueHandler::PULL_QUEUE_NAME);
@@ -210,7 +211,12 @@ class PullController extends ControllerBase {
         throw new \Exception($e->getMessage());
       }
     }
-    $elapsed = microtime(true) - $start;
-    $this->eventDispatcher->dispatch(SalesforceEvents::NOTICE, new SalesforceNoticeEvent(NULL, 'Processed @count items from the @name queue in @elapsed sec.', ['@count' => $count, '@name' => QueueHandler::PULL_QUEUE_NAME, '@elapsed' => round($elapsed, 2)]));
+    $elapsed = microtime(TRUE) - $start;
+    $this->eventDispatcher->dispatch(SalesforceEvents::NOTICE, new SalesforceNoticeEvent(NULL, 'Processed @count items from the @name queue in @elapsed sec.', [
+      '@count' => $count,
+      '@name' => QueueHandler::PULL_QUEUE_NAME,
+      '@elapsed' => round($elapsed, 2),
+    ]));
   }
+
 }

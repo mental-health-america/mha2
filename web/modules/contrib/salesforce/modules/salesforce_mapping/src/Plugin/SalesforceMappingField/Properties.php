@@ -4,7 +4,8 @@ namespace Drupal\salesforce_mapping\Plugin\SalesforceMappingField;
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\salesforce_mapping\SalesforceMappingFieldPluginBase;
+use Drupal\Core\TypedData\ListDataDefinitionInterface;
+use Drupal\field\Entity\FieldConfig;
 use Drupal\salesforce_mapping\Entity\SalesforceMappingInterface;
 
 /**
@@ -15,7 +16,7 @@ use Drupal\salesforce_mapping\Entity\SalesforceMappingInterface;
  *   label = @Translation("Properties")
  * )
  */
-class Properties extends SalesforceMappingFieldPluginBase {
+class Properties extends PropertiesBase {
 
   /**
    * Implementation of PluginFormInterface::buildConfigurationForm.
@@ -28,7 +29,7 @@ class Properties extends SalesforceMappingFieldPluginBase {
     // Display the plugin config form here:
     if (empty($options)) {
       $pluginForm['drupal_field_value'] = [
-        '#markup' => t('No available properties.'),
+        '#markup' => $this->t('No available properties.'),
       ];
     }
     else {
@@ -45,62 +46,49 @@ class Properties extends SalesforceMappingFieldPluginBase {
   }
 
   /**
-   * {@inheritdoc}
-   */
-  public function validateConfigurationForm(array &$form, FormStateInterface $form_state) {
-    parent::validateConfigurationForm($form, $form_state);
-    $vals = $form_state->getValues();
-    $config = $vals['config'];
-    if (empty($config['salesforce_field'])) {
-      $form_state->setError($form['config']['salesforce_field'], t('Salesforce field is required.'));
-    }
-    if (empty($config['drupal_field_value'])) {
-      $form_state->setError($form['config']['drupal_field_value'], t('Drupal field is required.'));
-    }
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function value(EntityInterface $entity, SalesforceMappingInterface $mapping) {
-    // No error checking here. If a property is not defined, it's a
-    // configuration bug that needs to be solved elsewhere.
-    // Multipicklist is the only target type that handles multi-valued fields.
-    $describe = $this
-      ->salesforceClient
-      ->objectDescribe($mapping->getSalesforceObjectType());
-    $field_definition = $describe->getField($this->config('salesforce_field'));
-    if ($field_definition['type'] == 'multipicklist') {
-      $values = [];
-      foreach ($entity->get($this->config('drupal_field_value')) as $value) {
-        $values[] = $value->value;
-      }
-      return implode(';', $values);
-    }
-    else {
-      return $entity->get($this->config('drupal_field_value'))->value;
-    }
-  }
-
-  /**
    * Form options helper.
    */
-  private function getConfigurationOptions(SalesforceMappingInterface $mapping) {
-    $instances = $this->entityFieldManager->getFieldDefinitions(
+  protected function getConfigurationOptions(SalesforceMappingInterface $mapping) {
+    /** @var \Drupal\Core\Field\FieldDefinitionInterface[] $field_definitions */
+    $field_definitions = $this->entityFieldManager->getFieldDefinitions(
       $mapping->get('drupal_entity_type'),
       $mapping->get('drupal_bundle')
     );
 
     $options = [];
-    foreach ($instances as $key => $instance) {
-      // Entity reference fields are handled elsewhere.
-      if ($this->instanceOfEntityReference($instance)) {
+
+    foreach ($field_definitions as $field_name => $field_definition) {
+      $label = $field_definition->getLabel();
+      if ($this->instanceOfEntityReference($field_definition)) {
         continue;
       }
-      $options[$key] = $instance->getLabel();
+      else {
+        // Get a list of property definitions.
+        $property_definitions = $field_definition->getFieldStorageDefinition()
+          ->getPropertyDefinitions();
+        if (count($property_definitions) > 1) {
+          foreach ($property_definitions as $property => $property_definition) {
+            $options[(string) $label][$field_name . '.' . $property] = $label . ': ' . $property_definition->getLabel();
+          }
+        }
+        else {
+          $options[$field_name] = $label;
+        }
+      }
     }
     asort($options);
     return $options;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getPluginDefinition() {
+    $definition = parent::getPluginDefinition();
+    if ($field = FieldConfig::loadByName($this->mapping->getDrupalEntityType(), $this->mapping->getDrupalBundle(), $this->config('drupal_field_value'))) {
+      $definition['config_dependencies']['config'][] = $field->getConfigDependencyName();
+    }
+    return $definition;
   }
 
 }

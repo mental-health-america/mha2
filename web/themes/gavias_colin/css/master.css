@@ -5329,6 +5329,18 @@ ul.sf-menu.sf-navbar ul ul {
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.30);
 }
 
+.form-required:after {
+  content: '';
+  vertical-align: super;
+  display: inline-block;
+  background-image: url(/core/misc/icons/ee0000/required.svg);
+  background-repeat: no-repeat;
+  background-size: 6px 6px;
+  width: 6px;
+  height: 6px;
+  margin: 0 0.3em;
+}
+
 .body-page input[type="email"], .body-page textarea, .body-page select {
   border: 1px solid #fff !important;
 }
@@ -5383,9 +5395,9 @@ header.header-v2 {
   color: #fff !important;
   background: #0086b3 !important;
   border: 1px solid transparent;
-  font-size: 10px !important;
+  font-size: 11px !important;
   font-weight: 600 !important;
-  padding: 5px 10px !important;
+  padding: 5px 20px !important;
   margin: 0 8px 5px;
   text-transform: uppercase;
   text-decoration: none;
@@ -5400,9 +5412,9 @@ header.header-v2 {
   background: #385887 !important;
   color: #fff !important;
   border: 1px solid transparent;
-  font-size: 10px !important;
+  font-size: 11px !important;
   font-weight: 600 !important;
-  padding: 5px 10px !important;
+  padding: 5px 20px !important;
   margin: 0 8px 5px;
   text-transform: uppercase;
   text-decoration: none;
@@ -5416,9 +5428,9 @@ header.header-v2 {
   background: #ea7901!important;
   color: #fff !important;
   border: 1px solid transparent;
-  font-size: 10px !important;
+  font-size: 11px !important;
   font-weight: 600 !important;
-  padding: 5px 10px !important;
+  padding: 5px 20px !important;
   margin: 0 8px 5px;
   text-transform: uppercase;
   text-decoration: none;

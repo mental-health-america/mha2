@@ -3,8 +3,10 @@
 namespace Drupal\salesforce_mapping\Plugin\SalesforceMappingField;
 
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 
+use Drupal\field\Entity\FieldConfig;
 use Drupal\salesforce_mapping\Entity\SalesforceMappingInterface;
 use Drupal\salesforce_mapping\SalesforceMappingFieldPluginBase;
 
@@ -29,7 +31,7 @@ class RelatedProperties extends SalesforceMappingFieldPluginBase {
 
     if (empty($options)) {
       $pluginForm['drupal_field_value'] += [
-        '#markup' => t('No available entity reference fields.'),
+        '#markup' => $this->t('No available entity reference fields.'),
       ];
     }
     else {
@@ -92,6 +94,43 @@ class RelatedProperties extends SalesforceMappingFieldPluginBase {
   }
 
   /**
+   * {@inheritdoc}
+   */
+  public function getPluginDefinition() {
+    $definition = parent::getPluginDefinition();
+    $definition['config_dependencies']['config'] = [];
+    $field_name = $this->config('drupal_field_value');
+    if (strpos($field_name, ':')) {
+      list($field_name, $dummy) = explode(':', $field_name, 2);
+    }
+    // Add reference field.
+    if ($field = FieldConfig::loadByName($this->mapping->getDrupalEntityType(), $this->mapping->getDrupalBundle(), $field_name)) {
+      $definition['config_dependencies']['config'][] = $field->getConfigDependencyName();
+      // Add dependencies of referenced field.
+      foreach ($field->getDependencies() as $type => $dependency) {
+        foreach ($dependency as $item) {
+          $definition['config_dependencies'][$type][] = $item;
+        }
+      }
+    }
+    return $definition;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function checkFieldMappingDependency(array $dependencies) {
+    $definition = $this->getPluginDefinition();
+    foreach ($definition['config_dependencies'] as $type => $dependency) {
+      foreach ($dependency as $item) {
+        if (!empty($dependencies[$type][$item])) {
+          return TRUE;
+        }
+      }
+    }
+  }
+
+  /**
    * Form options helper.
    */
   protected function getConfigurationOptions($mapping) {
@@ -111,38 +150,25 @@ class RelatedProperties extends SalesforceMappingFieldPluginBase {
       if (!$this->instanceOfEntityReference($instance)) {
         continue;
       }
-      $settings = $this
-        ->selectionPluginManager()
-        ->getSelectionHandler($instance)
-        ->getConfiguration();
-      $entity_type = $settings['target_type'];
+
+      $settings = $instance->getSettings();
+      $entity_type_id = $settings['target_type'];
       $properties = [];
 
-      // If handler is default and allowed bundles are set, include all fields
-      // from all allowed bundles.
-      try {
-        if (!empty($settings['handler_settings']['target_bundles'])) {
-          foreach ($settings['handler_settings']['target_bundles'] as $bundle) {
-            $properties += $this
-              ->entityFieldManager
-              ->getFieldDefinitions($entity_type, $bundle);
+      $entity_type = $this->entityTypeManager->getDefinition($entity_type_id);
+
+      // exclude non-fieldables
+      if ($entity_type->entityClassImplements(FieldableEntityInterface::class)) {
+        foreach ($this->entityTypeBundleInfo->getBundleInfo($entity_type_id) as $bundle => $bundle_info) {
+          // If target bundles is specified, limit which bundles are visible.
+          if (!empty($settings['handler_settings']['target_bundles'])
+            && !in_array($bundle, $settings['handler_settings']['target_bundles'])) {
+            continue;
           }
-        }
-        else {
           $properties += $this
             ->entityFieldManager
-            ->getBaseFieldDefinitions($entity_type);
-          $bundles = array_keys($this->entityTypeBundleInfo->getBundleInfo($entity_type));
-          foreach ($bundles as $bundle) {
-            $properties += $this
-              ->entityFieldManager
-              ->getFieldDefinitions($entity_type, $bundle);
-          }
+            ->getFieldDefinitions($entity_type_id, $bundle);
         }
-      }
-      catch (\Exception $e) {
-        // @TODO is there a better way to exclude non-fieldables?
-        continue;
       }
 
       foreach ($properties as $key => $property) {

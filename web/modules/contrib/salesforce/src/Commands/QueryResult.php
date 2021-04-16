@@ -11,8 +11,25 @@ use Drupal\salesforce\SelectQueryResult;
  */
 class QueryResult extends RowsOfFieldsWithMetadata {
 
+  /**
+   * Size of query result.
+   *
+   * @var int
+   */
   protected $size;
+
+  /**
+   * Total records returned by query.
+   *
+   * @var int
+   */
   protected $total;
+
+  /**
+   * The query.
+   *
+   * @var \Drupal\salesforce\SelectQueryInterface
+   */
   protected $query;
 
   /**
@@ -24,7 +41,6 @@ class QueryResult extends RowsOfFieldsWithMetadata {
    *   SOQL result.
    */
   public function __construct(SelectQueryInterface $query, SelectQueryResult $queryResult) {
-    print_r($queryResult->records());
     $data = [];
     foreach ($queryResult->records() as $id => $record) {
       $data[$id] = $record->fields();

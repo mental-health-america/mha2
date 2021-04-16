@@ -1,12 +1,15 @@
 name: Attach Library In Views
-description: Attach library in view's default as well as in display section.
+description: Attach library in views in default as well as in dispaly section.
 type: module
-core: 8.x
-core_version_requirement: ^8 || ^9
+# core: 8.x
+package: Views Library
 dependencies:
-  - drupal:views
+  - views
+  - views_ui
 
-# Information added by Drupal.org packaging script on 2020-04-28
-version: '2.0.0'
+
+# Information added by Drupal.org packaging script on 2018-11-13
+version: '8.x-1.1'
+core: '8.x'
 project: 'views_attach_library'
-datestamp: 1588080977
+datestamp: 1542116883

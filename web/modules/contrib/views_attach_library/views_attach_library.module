@@ -1,12 +1,6 @@
 <?php
 
-/**
- * @file
- * This file adds a library to views page or block.
- */
-
-use Drupal\views\ViewExecutable;
-use Drupal\Core\Routing\RouteMatchInterface;
+use \Drupal\views\ViewExecutable;
 
 /**
  * Implements hook_views_pre_render().
@@ -16,25 +10,11 @@ function views_attach_library_views_pre_render(ViewExecutable $view) {
   $current_display = $view->current_display;
   $view_config = $view->storage->getDisplay($current_display);
   if (!empty($view_config['display_options']['display_extenders']['library_in_views_display_extender'])) {
-    $libraries = explode(',', $view_config['display_options']['display_extenders']['library_in_views_display_extender']['attach_library']['attach_library']);
-    foreach ($libraries as $library) {
+    $library = $view_config['display_options']['display_extenders']['library_in_views_display_extender']['attach_library']['attach_library'];
+    if (!empty($library)) {
       // Attach library to view.
-      $view->element['#attached']['library'][] = trim($library);
+      $view->element['#attached']['library'][] = $library;
     }
   }
-}
-
-/**
- * Implements hook_help().
- */
-function views_attach_library_help($route_name, RouteMatchInterface $route_match) {
-  switch ($route_name) {
-
-    case 'help.page.views_attach_library':
-      $output = '';
-      $output .= '<h3>' . t('About') . '</h3>';
-      $output .= '<p>' . t("The library in views module is designed to attach JS and CSS library in views, by providing just library name.") . '</p>';
-      $output .= '</dl>';
-      return $output;
-  }
+  
 }
